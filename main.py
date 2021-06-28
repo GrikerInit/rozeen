@@ -68,9 +68,7 @@ async def unmute(ctx, member:discord.Member):
 
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
-
-    await client.kick(member)
-
-    await ctx.send(f'User {member} has been kick')
+ await client.kick(member)
+ await ctx.send(f'User {member} has been kick')
 
 client.run(token)
