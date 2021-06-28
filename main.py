@@ -44,15 +44,25 @@ async def mute(ctx, member:discord.Member):
     role = discord.utils.get(ctx.guild.roles, name="Muted")
     guild = ctx.guild
     if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False, speak=False)
+        await guild.create_role(name="Muted", permissions=perms)
         await member.add_roles(role)
         await ctx.send(f"User has been muted")
-
+ 
 @client.command()
 async def unmutea(ctx, member:discord.Member):
     role = discord.utils.get(ctx.guild.roles, name="Muted")
     guild = ctx.guild
     if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False, speak=False)
+        await guild.create_role(name="Muted", permissions=perms)
         await member.remove_roles(role)
         await ctx.send(f"User has been muted")
+
+@commands.command()
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, member: discord.Member, *, reason=None):
+ await client.kick(member)
+ await ctx.send(f'User {member} has been kick')
 
 client.run(token)
