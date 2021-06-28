@@ -79,7 +79,7 @@ async def snipe(ctx):
     embed = discord.Embed(description=contents,
                           color=discord.Color.purple(), timestamp=time)
     embed.set_author(
-        name=f"{author.name}#{author.discriminator}")
+        name=f"{<@author.id">}#{author.discriminator}")
     embed.set_footer(text=f"Deleted in : #{channel_name}")
 
     await ctx.channel.send(embed=embed)
