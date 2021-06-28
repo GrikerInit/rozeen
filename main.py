@@ -36,6 +36,7 @@ async def role(ctx, user : discord.Member, *, role : discord.Role):
   else:
       await user.add_roles(role) #adds role if not already has it
       await ctx.send(f"Added {role} to {user.mention}") 
+      
 
 @client.command()
 async def mute(ctx, member:discord.Member):
@@ -62,5 +63,14 @@ async def unmute(ctx, member:discord.Member):
     else:
        await member.remove_roles(role)
        await ctx.send(f"User has been unmuted")
+
+@commands.command()
+
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, member: discord.Member, *, reason=None):
+
+    await client.kick(member)
+
+    await ctx.send(f'User {member} has been kick')
 
 client.run(token)
