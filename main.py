@@ -49,7 +49,19 @@ async def mute(ctx, member:discord.Member):
     else:
        await member.add_roles(role)
        await ctx.send(f"{member} has been muted")
-
+        
+@client.command()
+async def unmute(ctx, member:discord.Member):
+    role = discord.utils.get(ctx.guild.roles, name="Muted")
+    guild = ctx.guild
+    if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False, speak=False)
+        await guild.create_role(name="Muted", permissions=perms)
+        await member.remove_roles(role)
+        await ctx.send(f"{member} has been muted")
+    else:
+       await member.remove_roles(role)
+       await ctx.send(f"{member} has been muted")
 
 
 
