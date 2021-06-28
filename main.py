@@ -23,7 +23,7 @@ async def whoami(ctx) :
 
 @client.command()
 @commands.has_permissions(kick_members=True)
-async def clearaaaaa(ctx, amount=3) :
+async def purge(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
 @client.command('role')
