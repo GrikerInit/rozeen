@@ -19,7 +19,7 @@ async def whoami(ctx) :
     await ctx.send(f"You are {ctx.message.author.name}")
 
 @client.command()
-async def clear(ctx, amount=3) :
+async def clearaaaaa(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
 
