@@ -22,6 +22,7 @@ async def whoami(ctx) :
     await ctx.send(f"You are {ctx.message.author.name}")
 
 @client.command()
+@commands.has_permissions(kick_members=True)
 async def clearaaaaa(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
@@ -65,7 +66,6 @@ async def unmute(ctx, member:discord.Member):
        await ctx.send(f"User has been unmuted")
 
 @commands.command()
-
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
  await client.kick(member)
