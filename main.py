@@ -53,4 +53,4 @@ async def mute(ctx, member:discord.Member):
 
 
 
-client.run('token')
+client.run(token)
