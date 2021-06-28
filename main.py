@@ -22,8 +22,7 @@ async def whoami(ctx) :
     await ctx.send(f"You are {ctx.message.author.name}")
 
 @client.command()
-@commands.has_permissions(kick_members=True)
-async def purge(ctx, amount=3) :
+async def clear(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
 @client.command('role')
@@ -37,7 +36,6 @@ async def role(ctx, user : discord.Member, *, role : discord.Role):
   else:
       await user.add_roles(role) #adds role if not already has it
       await ctx.send(f"Added {role} to {user.mention}") 
-      
 
 @client.command()
 async def mute(ctx, member:discord.Member):
@@ -47,22 +45,11 @@ async def mute(ctx, member:discord.Member):
         perms = discord.Permissions(send_messages=False, speak=False)
         await guild.create_role(name="Muted", permissions=perms)
         await member.add_roles(role)
-        await ctx.send(f"User has been muted")
- 
-@client.command()
-async def unmutea(ctx, member:discord.Member):
-    role = discord.utils.get(ctx.guild.roles, name="Muted")
-    guild = ctx.guild
-    if role not in guild.roles:
-        perms = discord.Permissions(send_messages=False, speak=False)
-        await guild.create_role(name="Muted", permissions=perms)
-        await member.remove_roles(role)
-        await ctx.send(f"User has been muted")
+        await ctx.send(f"{member} has been muted")
+    else:
+       await member.add_roles(role)
+       await ctx.send(f"{member} has been muted")
 
-@commands.command()
-@commands.has_permissions(kick_members=True)
-async def kick(ctx, member: discord.Member, *, reason=None):
- await client.kick(member)
- await ctx.send(f'User {member} has been kick')
 
-client.run(token)
+
+client.run('ODU4OTQ1ODM2NjY2MzIyOTU1.YNlhpQ.OgT7aOixat5vw2UuU9dI7a7NgZk')
