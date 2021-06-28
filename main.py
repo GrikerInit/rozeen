@@ -58,10 +58,10 @@ async def unmute(ctx, member:discord.Member):
         perms = discord.Permissions(send_messages=False, speak=False)
         await guild.create_role(name="Muted", permissions=perms)
         await member.remove_roles(role)
-        await ctx.send(f"{member} has been muted")
+        await ctx.send(f"{member} has been unmuted")
     else:
        await member.remove_roles(role)
-       await ctx.send(f"{member} has been muted")
+       await ctx.send(f"{member} has been unmuted")
 
 
 
