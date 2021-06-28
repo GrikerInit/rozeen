@@ -55,6 +55,19 @@ async def mute(ctx, member:discord.Member):
     else:
        await member.add_roles(role)
        await ctx.send(f"{member} has been muted")
+        
+@client.command()
+async def unmute(ctx, member:discord.Member):
+    role = discord.utils.get(ctx.guild.roles, name="Muted")
+    guild = ctx.guild
+    if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False, speak=False)
+        await guild.create_role(name="Muted", permissions=perms)
+        await member.remove_roles(role)
+        await ctx.send(f"{member} has been unmuted")
+    else:
+       await member.remove_roles(role)
+       await ctx.send(f"{member} has been unmuted")
 
 @client.command()
 async def kill(ctx, member:discord.Member):
@@ -82,7 +95,11 @@ async def snipe(ctx):
         name=f"{author.name}#{author.discriminator}")
     embed.set_footer(text=f"Deleted in : #{channel_name}")
 
+<<<<<<< HEAD
     await ctx.channel.send(embed=embed)
 
         
 client.run(token)
+=======
+client.run(token)
+>>>>>>> e1e8edd29dc12b71bc4ee951d36082eea6aeaecd
