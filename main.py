@@ -48,7 +48,7 @@ async def mute(ctx, member:discord.Member):
         await ctx.send(f"User has been muted")
 
 @client.command()
-async def unmute(ctx, member:discord.Member):
+async def unmutea(ctx, member:discord.Member):
     role = discord.utils.get(ctx.guild.roles, name="Muted")
     guild = ctx.guild
     if role not in guild.roles:
