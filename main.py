@@ -1,6 +1,6 @@
 
-from time import time
 import discord
+from time import time
 from discord import guild
 from discord import permissions
 from discord import message
@@ -45,6 +45,7 @@ async def role(ctx, user : discord.Member, *, role : discord.Role):
       await ctx.send(f"Added {role} to {user.mention}") 
 
 @client.command()
+@commands.has_permissions(administrator=True)
 async def mute(ctx, member:discord.Member):
     role = discord.utils.get(ctx.guild.roles, name="Muted")
     guild = ctx.guild
@@ -56,6 +57,21 @@ async def mute(ctx, member:discord.Member):
     else:
        await member.add_roles(role)
        await ctx.send(f"{member} has been muted")
+
+@client.command()
+@commands.has_permissions(administrator=True)
+async def unmute(ctx, member:discord.Member):
+    role = discord.utils.get(ctx.guild.roles, name="Muted")
+    guild = ctx.guild
+    if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False, speak=False)
+        await guild.create_remove(name="Muted", permissions=perms)
+        await member.add_roles(role)
+        await ctx.send(f"{member} has been unmuted")
+    else:
+       await member.add_remove(role)
+       await ctx.send(f"{member} has been unmuted")
+
 
 @client.command()
 async def kill(ctx, member:discord.Member):
@@ -80,7 +96,7 @@ async def snipe(ctx):
     embed = discord.Embed(description=contents,
                           color=discord.Color.purple(), timestamp=time)
     embed.set_author(
-        name=f" {author.name}#{author.discriminator}", icon_url=author.avatar)
+        name=f"{author.name}#{author.discriminator}", icon_url=author.avatar)
     embed.set_footer(text=f"Deleted in : #{channel_name}")
 
     await ctx.channel.send(embed=embed)
