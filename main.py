@@ -71,6 +71,7 @@ async def unmute(ctx, member:discord.Member):
     else:
        await member.remove_roles(role)
        await ctx.send(f"{member} has been unmuted")
+       
 
 
 @client.command()
@@ -96,10 +97,9 @@ async def snipe(ctx):
     embed = discord.Embed(description=contents,
                           color=discord.Color.purple(), timestamp=time)
     embed.set_author(
-        name=f"{author.name}#{author.discriminator}", icon_url=author.avatar)
+        name=f"{author.name}#{author.discriminator}", icon_url=author.avatar_url)
     embed.set_footer(text=f"Deleted in : #{channel_name}")
 
     await ctx.channel.send(embed=embed)
 
-        
 client.run(token)
