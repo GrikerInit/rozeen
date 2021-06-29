@@ -66,10 +66,10 @@ async def unmute(ctx, member:discord.Member):
     if role not in guild.roles:
         perms = discord.Permissions(send_messages=False, speak=False)
         await guild.create_remove(name="Muted", permissions=perms)
-        await member.add_roles(role)
+        await member.remove_roles(role)
         await ctx.send(f"{member} has been unmuted")
     else:
-       await member.add_remove(role)
+       await member.remove_roles(role)
        await ctx.send(f"{member} has been unmuted")
 
 
@@ -96,7 +96,7 @@ async def snipe(ctx):
     embed = discord.Embed(description=contents,
                           color=discord.Color.purple(), timestamp=time)
     embed.set_author(
-        name=f"{author.name}#{author.discriminator}", icon_url=author.avatar)
+        name=f"{author.name}#{author.discriminator}")
     embed.set_footer(text=f"Deleted in : #{channel_name}")
 
     await ctx.channel.send(embed=embed)
