@@ -104,6 +104,7 @@ async def snipe(ctx):
 
 @client.command()
 async def av(ctx, member:discord.Member):
- await ctx.send(member.avatar_url)
+    await ctx.send(member.avatar_url)
+ 
 
 client.run(token)
