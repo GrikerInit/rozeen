@@ -102,9 +102,6 @@ async def snipe(ctx):
 
     await ctx.channel.send(embed=embed)
 
-@client.command()
-async def av(ctx, member:discord.Member):
-    await ctx.send(member.avatar_url)
- 
+
 
 client.run(token)
