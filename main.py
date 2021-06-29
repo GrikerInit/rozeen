@@ -90,7 +90,7 @@ async def snipe(ctx):
         contents, author, channel_name, time = client.sniped_messages[ctx.guild.id]
 
     except:
-        await ctx.channel.send("Couldn't find a message to snipe!")
+        await ctx.channel.send("Sorry WE Couldn't find a message to snipe!")
         return
 
     embed = discord.Embed(description=contents,
