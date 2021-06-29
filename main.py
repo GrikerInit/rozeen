@@ -76,7 +76,8 @@ async def unmute(ctx, member:discord.Member):
 
 @client.command()
 async def kill(ctx, member:discord.Member):
-    await ctx.send(f"<@{member.id}> was killed using attackers smortness")
+    await ctx.send(f"<@{member.id}> was killed")
+    await ctx.send(f"https://images-ext-1.discordapp.net/external/5gWWY_xqzhR914VnkAnRl8FCEcE29F65C-R15ffTjqM/https/cdn.weeb.sh/images/B1VnoJFDZ.gif")
 
 @client.event
 async def on_message_delete(message):
